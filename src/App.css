@@ -37,10 +37,23 @@
   }
 }
 
-
+/* Header.jsx */
+.navbar-brand {
+  cursor: pointer;
+}
 
 /* Main.jsx */
+.loading {
+  font-size: 30px;
+  text-align: center;
+}
+
 .card-img-top {
   height: 200px;
   object-fit: cover;
+}
+
+/* Pagination.jsx */
+.page {
+  padding: 50px;
 }

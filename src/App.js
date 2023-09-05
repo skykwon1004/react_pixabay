@@ -1,14 +1,15 @@
 // warning 안뜨게 하기
 /* eslint-disable */
 
-import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './Layout';
 import Main from './components/Main';
 import Detail from './components/Detail';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Pagination from './components/Pagination';
 
 function App() {
 
@@ -16,32 +17,69 @@ function App() {
   //2. 변수에 api get
   //3. 데이터 담기 완료
   //4. useEffect로 api get (한번만 실행되게)
-
   const [photos, setPhotos] = useState([]);
-  const [search, setSearch] = useState('');
-  const love = 'love';
 
-  const getPhotos = async () => {
-    // const photos = await axios.get('https://pixabay.com/api/?key=7526224-b607b4b30dee443650033bd9e&q=yellow+flowers&image_type=photo');
-    const r = await axios.get(`https://pixabay.com/api/?key=7526224-b607b4b30dee443650033bd9e&q=${search}`);
-    setPhotos(r.data.hits);
-    console.log(r);
-    // console.log(photos.data.hits);
-  }
+
+  //검색기능
+  const [search, setSearch] = useState('');
+  const [input, setInput] = useState('');
+
+  // 로딩중 표시
+  const [loading, setLoading] = useState(false);
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(8);
 
   useEffect(() => {
+    const getPhotos = async () => {
+      setLoading(true);
+      const r = await axios.get(`https://pixabay.com/api/?key=7526224-b607b4b30dee443650033bd9e&q=${search}&per_page=200`);
+      setPhotos(r.data.hits);
+      //console.log(r);
+      // console.log(r.data.hits);
+      setLoading(false);
+    }
     getPhotos();
-  }, []);
+
+  }, [search]);
+
+  //console.log(photos)
+
+
+  /* pagination */
+  // currentPage = 1;
+  // postsPerPage = 8;
+  // indexOfLast = 8;
+  // indexOfFirst = 0;
+  const indexOfLast = currentPage * postsPerPage; //8
+  const indexOfFirst = indexOfLast - postsPerPage; //0
+  const currentPosts = (photos) => {
+    let currentPosts = 0;
+    // currentPosts = photos.slice(0, 8); //0~7까지 잘라라
+    currentPosts = photos.slice(indexOfFirst, indexOfLast);
+      // console.log(currentPosts);
+    return currentPosts;
+  };
+
+
+
 
   return (
     <>
+      <Header search={search} setSearch={setSearch} input={input} setInput={setInput} />
+
       <Routes>
-        <Route path='/' element={<Layout photos={photos}/>} >
-          <Route index element={<Main photos={photos} />} />
-          <Route path='/detail:id' element={<Detail />} />
-          
-        </Route>
+        <Route index element={<Main photos={currentPosts(photos)} loading={loading} />} />
+        <Route path='/detail' element={<Detail />}></Route>
+        <Route path='/detail/01' element={<div>야 왜안떠</div>} />
       </Routes>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={photos.length}
+        paginate={setCurrentPage}
+      ></Pagination>
+      <Footer />
     </>
   )
 }

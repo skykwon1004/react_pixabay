@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 const MAIN = styled.section`
-padding: 200px 100px;
+padding: 100px 100px;
 `
 const CARD_WRAPPER = styled.div`
 width: 1280px;
@@ -17,11 +17,13 @@ grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 30px;
 `
 
-const Main = ({ photos }) => {
+const Main = ({ photos, loading }) => {
     // console.log(photos)
-
     return (
         <MAIN>
+            {loading && <div className='loading'>Loading...</div>}
+
+            <h2>{photos.id}</h2>
             <CARD_WRAPPER>
                 {
                     photos.map((it, idx) => {
