@@ -49,8 +49,8 @@ const Main = ({ photos, loading, total }) => {
                                     <Card.Text>
                                         <span className="like" onClick={() => incrementLike(idx)}><b>❤</b> {likes[idx]}</span>
                                     </Card.Text>
-                                    <Link to={`/detail/${encodeURIComponent(it.webformatURL)}`}>
-                                        <Button variant="primary">download</Button>
+                                    <Link to='/detail'>
+                                        <Button variant="primary">Download</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>

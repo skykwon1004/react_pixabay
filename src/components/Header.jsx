@@ -38,8 +38,8 @@ const Header = ({ photos, search, setSearch, input, setInput }) => {
                         >
                             <Nav.Link onClick={() => navigate('/detail')}>Detail</Nav.Link>
                             <NavDropdown title="Tag" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">
-                                    Action
+                                <NavDropdown.Item onClick={()=>navigate('/detail/cat')}>
+                                    Cat
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="#action4">
                                     Another action

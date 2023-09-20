@@ -1,0 +1,82 @@
+/* reset : 기존에 html tag에 적용된 스타일을 
+div기본 스타일로 통일 (reser)해 줘서 레이아웃을 잡기 편리하도록 만들어주는 css */
+
+/* 선택자를 사용해서 연결된 파일의 스타일을 빠꾸어 준다. */
+
+/* *은 모든(all) tag라는 의미를 가진 선택자... */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    /* padding 과 border를 포함해서 박스 사이즈가 늘어나는 것을 박스 안쪽으로 가둔다. */
+    box-sizing: border-box;
+}
+
+html{
+	font-size: 62.5%;
+}
+/* 더 쉬운 방법은 html { font-size:62.5%; }, 또는 html { font-size:10px; }로 하면 
+10px은 1rem,
+12px은 1.2rem,
+14px은 1.4rem 이 되기 때문에 따로 계산할 필요가 없어 px을 사용 할때 처럼 사용 할 수 있어 편리하다. */
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ul,
+ol {
+    list-style: none;
+}
+
+em,
+i,
+address {
+    font-style: normal;
+}
+
+b,
+strong {
+    font-weight: normal;
+} */
+
+a {
+    text-decoration: none;
+}
+
+/* img {
+    vertical-align: middle;
+    max-width: 100%;
+} */
+
+/* body {
+    line-height: 1;
+    font-family: 'Poppins', 'Roboto', 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.025em;
+    word-break: keep-all;
+    overflow-x: hidden;
+}
+
+button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Poppins', 'Noto Sans KR', 'Roboto', sans-serif;
+}
+
+
+.cf::after,
+.clearflx::after,
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.sec {
+    padding: 100px 0;
+} */
+

@@ -75,9 +75,8 @@ function App() {
       <Header search={search} setSearch={setSearch} input={input} setInput={setInput} />
 
       <Routes>
-        <Route index element={<Main photos={currentPosts(photos)} loading={loading} total={total} />} />
-        {/* <Route path='/detail' element={<Detail photos={currentPosts(photos)} loading={loading}/>}></Route> */}
-        <Route path="/detail/:webformatURL" element={<Detail />}></Route>
+        <Route index element={<Main photos={currentPosts(photos)} loading={loading} total={total}/>} />
+        <Route path='/detail' element={<Detail />}></Route>
         <Route path='/detail/cat' element={<div>고양이가 우주를 지배한다</div>} />
       </Routes>
       <Pagination
