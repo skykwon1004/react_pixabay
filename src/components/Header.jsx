@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = ({ photos, search, setSearch, input, setInput }) => {
     // console.log('포토',photos)
-    console.log(search)
+    // console.log(search)
 
     const navigate = useNavigate();
 

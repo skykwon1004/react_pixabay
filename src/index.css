@@ -16,3 +16,16 @@ code {
 a {
   text-decoration: none;
 }
+
+
+em {
+  font-style: normal;
+}
+
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Poppins', 'Noto Sans KR', 'Roboto', sans-serif;
+}

@@ -39,17 +39,6 @@ const LIST = styled.div`
   }
 `;
 
-const COWRAPPER = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  /* strong {
-    outline: 1px solid red;
-    display: block;
-  } */
-`;
-
 const Comment = () => {
   const today = new Date();
   // 현재 날짜를 가져옵니다.
@@ -61,7 +50,7 @@ const Comment = () => {
   const [co, setCo] = useState(["고양이 귀엽다", "알럽캣", "난 짱이다 고양이"]);
   // console.log(co)
 
-  const [like, setLike] = useState([0, 0, 0]);
+  const [like, setLike] = useState(0);
 
   function 함수() {
     setLike(like + 1);
@@ -80,8 +69,6 @@ const Comment = () => {
     // console.log(copy);
   };
 
-  const [editIndex, setEditIndex] = useState(-1);
-
   return (
     <>
       <WRAPPER>
@@ -97,58 +84,32 @@ const Comment = () => {
 
         {co.map((item, index) => (
           <LIST key={index}>
-            {editIndex === index ? (
-              // Render an input field when editing
-              <COWRAPPER>
-                <input
-                  type="text"
-                  value={co[index]}
-                  onChange={(e) => {
-                    let copy = [...co];
-                    copy[index] = e.target.value;
-                    setCo(copy);
-                  }}
-                />
-                <button onClick={() => setEditIndex(-1)}>저장</button>
-              </COWRAPPER>
-            ) : (
-              // Render the comment text and edit button
-              <COWRAPPER>
-                <strong>
-                  {item}{" "}
-                  <em
-                    onClick={() => {
-                      let copy = [...like];
-                      copy[index] = like[index] + 1;
-                      setLike(copy);
-                    }}
-                  >
-                    ❤
-                  </em>{" "}
-                  {like[index]}
-                </strong>
-                <div className="right">
-                  {/* ... */}
-                  <button
-                    onClick={() => {
-                      setEditIndex(index);
-                    }}
-                    style={{ marginBottom: "10px" }}
-                  >
-                    수정
-                  </button>
-                  <button
-                    onClick={() => {
-                      let copy = [...co];
-                      copy.splice(index, 1);
-                      setCo(copy);
-                    }}
-                  >
-                    삭제
-                  </button>
-                </div>
-              </COWRAPPER>
-            )}
+            <strong>
+              {item} <em onClick={함수}>❤</em> {like}
+            </strong>
+            <div className="right">
+              <span className="date">{formattedDate}</span>
+              <button
+                onClick={() => {
+                  let copy = [...co];
+                  copy[index] = "고양이 잔다";
+                  setCo(copy);
+                }}
+                style={{ marginBottom: "10px" }}
+              >
+                수정
+              </button>
+              <button
+                onClick={() => {
+                  let copy = [...co];
+                  copy.splice(index, 1);
+                  setCo(copy);
+                  console.log(copy);
+                }}
+              >
+                삭제
+              </button>
+            </div>
           </LIST>
         ))}
 
